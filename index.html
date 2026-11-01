@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101627" />
+  <meta name="description" content="A playful interactive optics laboratory for curious minds." />
+  <title>Light &amp; Optics Studio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Light & Optics Studio home"><span class="brand-mark">✦</span><span>LIGHT <i>&</i> OPTICS <b>STUDIO</b></span></a>
+      <div class="top-actions"><span class="lab-status"><span></span> LAB OPEN</span><button class="icon-button" id="soundToggle" aria-label="Toggle sound" title="Toggle sound">♫</button><button class="avatar" title="Explorer profile">✷</button></div>
+    </header>
+    <main>
+      <section class="welcome-row"><div><div class="eyebrow">THE CURIOUS RAY LABORATORY</div><h1>Make light do <span>something magical.</span></h1><p>Build, bend, bounce and blend your way through the world of optics.</p></div><div class="daily-chip"><span class="sparkle">✦</span><div><b>Today’s discovery</b><small>Every ray has a story</small></div></div></section>
+      <nav class="station-nav" aria-label="Experiments" id="stationNav">
+        <button class="station active" data-station="sandbox"><span>◉</span>Ray sandbox</button><button class="station" data-station="mirror"><span>◩</span>Reflection</button><button class="station" data-station="refraction"><span>⌁</span>Refraction</button><button class="station" data-station="lenses"><span>◖</span>Lens lab</button><button class="station" data-station="shadows"><span>◐</span>Shadows</button><button class="station" data-station="colors"><span>◉</span>Color studio</button><button class="station" data-station="prism"><span>◇</span>Prism</button><button class="station" data-station="camera"><span>▣</span>Camera</button><button class="station" data-station="periscope"><span>↗</span>Periscope</button><button class="station" data-station="maze"><span>⌗</span>Laser maze</button><button class="station" data-station="magnify"><span>⌕</span>Magnify</button>
+      </nav>
+      <div class="workspace">
+        <aside class="left-panel panel"><div class="panel-head"><div><div class="eyebrow">YOUR WORKBENCH</div><h2 id="stationTitle">Ray sandbox</h2></div><button id="resetBtn" class="quiet-button" title="Reset this experiment">↺ Reset</button></div><p id="stationIntro" class="station-intro">Drop elements into the beam and see what light does.</p>
+          <div class="lesson-note" id="lessonNote"><span class="note-icon">✧</span><span>Light travels in straight lines until something changes its path.</span></div>
+          <div class="control-group" id="sandboxControls"><div class="group-title">BUILD YOUR SCENE <span>DRAG TO ADD</span></div><div class="object-grid"><button class="object-card" draggable="true" data-object="mirror"><span class="object-visual mirror-v">╱</span><b>Mirror</b><small>Reflects light</small></button><button class="object-card" draggable="true" data-object="glass"><span class="object-visual glass-v">▱</span><b>Glass</b><small>Bends light</small></button><button class="object-card" draggable="true" data-object="blocker"><span class="object-visual block-v">▰</span><b>Blocker</b><small>Makes a shadow</small></button><button class="object-card" draggable="true" data-object="lens"><span class="object-visual lens-v">◖</span><b>Lens</b><small>Focuses light</small></button></div><p class="tip-line">Tap a card, then the canvas to add another copy.</p></div>
+          <div class="control-group dynamic-controls" id="dynamicControls"><div class="group-title">EXPERIMENT KNOBS</div><label class="control-label"><span>Beam angle</span><output id="angleOut">0°</output></label><input id="angleSlider" type="range" min="-55" max="55" value="0" /><label class="control-label"><span>Light color</span><output></output></label><div class="swatches"><button class="swatch selected" data-color="#ffd75e" style="--swatch:#ffd75e" aria-label="Warm yellow"></button><button class="swatch" data-color="#ff6b70" style="--swatch:#ff6b70" aria-label="Red"></button><button class="swatch" data-color="#58d9ff" style="--swatch:#58d9ff" aria-label="Blue"></button><button class="swatch" data-color="#b47cff" style="--swatch:#b47cff" aria-label="Violet"></button><button class="swatch" data-color="#f6fbff" style="--swatch:#f6fbff" aria-label="White"></button></div></div>
+          <div class="control-group" id="stationControls"></div>
+          <div class="bottom-hint"><span>⌖</span> <span id="hintText">Drag the sun or an object to explore.</span></div>
+        </aside>
+        <section class="canvas-panel panel"><div class="canvas-toolbar"><div><span class="live-dot"></span><b id="canvasLabel">LIVE RAY TABLE</b><small id="canvasSub">DRAG THE SUN TO MOVE IT</small></div><div class="tool-buttons"><button class="tool-button selected" data-tool="select" title="Select and move">↖</button><button class="tool-button" data-tool="add" title="Place selected element">＋</button><button class="tool-button" id="raysToggle" title="Toggle ray guides">◎</button><button class="tool-button" id="fullscreenBtn" title="Expand workspace">⛶</button></div></div><div class="canvas-wrap" id="canvasWrap"><canvas id="opticsCanvas" aria-label="Interactive optics experiment canvas"></canvas><div class="canvas-tip" id="canvasTip"><span>✦</span> <span>Drag anything to explore</span></div><div class="sim-badge" id="simBadge">IDEAL RAY MODEL</div></div><div class="readout-bar"><div class="readout"><span class="readout-icon yellow">↗</span><div><small>BEAM</small><b id="beamReadout">Straight &amp; steady</b></div></div><div class="readout"><span class="readout-icon pink">∠</span><div><small>ANGLE</small><b id="angleReadout">0° from normal</b></div></div><div class="readout"><span class="readout-icon blue">✧</span><div><small>DISCOVERY</small><b id="discoveryReadout">Light travels in straight lines</b></div></div></div></section>
+        <aside class="right-panel"><section class="panel explore-panel"><div class="panel-head"><div><div class="eyebrow">QUICK EXPERIMENTS</div><h2>Pick a discovery</h2></div><span class="count-chip">11</span></div><div id="quickList" class="quick-list"></div></section><section class="panel mini-panel"><div class="eyebrow">YOUR FIELD NOTES</div><div class="note-stat"><span class="note-star">✦</span><div><b id="discoveryCount">0</b><small>discoveries today</small></div><span class="mini-progress"><i id="progressFill"></i></span></div><div class="progress-caption"><span>CURIOUS EXPLORER</span><span id="progressText">0 / 5</span></div></section><div class="footer-note">A simplified ray-optics model <span>·</span> Real light also behaves like a wave</div></aside>
+      </div>
+      <section class="below-row"><div class="principle-card"><span class="principle-icon">✧</span><div><small>THE BIG IDEA</small><b id="bigIdea">Light moves in straight lines—but you can change where it goes.</b></div></div><div class="principle-card challenge"><span class="principle-icon">⌖</span><div><small>TRY THIS</small><b id="challengeText">Add a mirror. Can you bounce the ray back toward the sun?</b></div><button id="challengeButton">Try it <span>→</span></button></div></section>
+    </main>
+    <footer>Made for curious minds <span>✦</span> Keep experimenting!</footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
